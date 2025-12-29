@@ -3,6 +3,7 @@ pipeline {
     
     tools {
         jdk 'JDK21'  // Must match the JDK name configured in Jenkins Tools
+        maven 'Maven'  // Maven tool name configured in Jenkins Tools
     }
     
     stages {
@@ -24,9 +25,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('starter_code') {
-                    withMaven {
-                        sh 'mvn clean compile'
-                    }
+                    sh 'mvn clean compile'
                 }
             }
         }
@@ -34,9 +33,7 @@ pipeline {
         stage('Test') {
             steps {
                 dir('starter_code') {
-                    withMaven {
-                        sh 'mvn test'
-                    }
+                    sh 'mvn test'
                 }
             }
         }
@@ -44,9 +41,7 @@ pipeline {
         stage('Package') {
             steps {
                 dir('starter_code') {
-                    withMaven {
-                        sh 'mvn package -DskipTests'
-                    }
+                    sh 'mvn package -DskipTests'
                 }
             }
         }
